@@ -1,5 +1,5 @@
 var inputresult = document.getElementById("result");
-var errormessage = document.getElementById("error-message");
+
 
 function getOperators() {
     return ['-', '+', '/', '%', '*'];
