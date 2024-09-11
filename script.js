@@ -30,6 +30,13 @@ function getFirstChar() {
 function handleInput(char) {
   var input = inputresult.value.trim();
   const operators = getOperators();
+
+  
+  if (!/^[0-9+\-*/%().]$/.test(char)) {
+    inputresult.style.border = "2px solid red"; 
+    return "";
+  }
+
   const firstChar = getFirstChar();
 
   if (inputresult.dataset.result !== "") {
@@ -68,11 +75,6 @@ function handleInput(char) {
 
   if (input.startsWith("00")) {
     input = input.slice(1);
-  }
-
-  if (/[^0-9+\-*/%().]/.test(char)) {
-    inputresult.style.border = "2px solid red";
-    return;
   }
 
   inputresult.style.border = "";
@@ -114,6 +116,12 @@ document.querySelectorAll(".btn input").forEach(function (button) {
 
 document.addEventListener("keypress", function (event) {
   const key = event.key;
+
+
+  if (!/^[0-9+\-*/%().]$/.test(key) && key !== "Enter") {
+    inputresult.style.border = "2px solid red"; 
+    return ""; 
+  }
 
   if (!isNaN(key) || getOperators().includes(key) || key === getDot()) {
     handleInput(key);
